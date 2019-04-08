@@ -1,5 +1,0 @@
-package dbtools
-
-func main() {
-
-}
