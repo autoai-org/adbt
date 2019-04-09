@@ -3,8 +3,10 @@ module dbtools
 go 1.12
 
 require (
+	github.com/golang/snappy v0.0.1
 	github.com/klauspost/compress v1.4.1
 	github.com/kr/pretty v0.1.0 // indirect
+	github.com/rlmcpherson/s3gof3r v0.5.0
 	github.com/sirupsen/logrus v1.4.1
 	github.com/stretchr/testify v1.3.0
 	github.com/tucnak/climax v0.0.0-20180716104603-da4c02f3b1f8

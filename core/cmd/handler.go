@@ -2,6 +2,7 @@ package main
 
 import (
 	mongo "../internal/drivers/mongo"
+	storages "../internal/storages"
 	"github.com/tucnak/climax"
 )
 
@@ -12,7 +13,7 @@ func backupHandler() climax.CmdHandler {
 			connString = conn
 		}
 		dbService := mongo.NewDefaultMongoService(connString)
-
+		storageService := storages.NewLocalStorageService()
 		return 0
 	}
 }

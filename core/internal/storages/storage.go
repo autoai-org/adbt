@@ -3,7 +3,7 @@ package storages
 import (
 	"io"
 
-	"github.com/klauspost/compress/snappy"
+	"github.com/golang/snappy"
 )
 
 const baseExtension = ".snappy"
