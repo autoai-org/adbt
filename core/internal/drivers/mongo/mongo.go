@@ -1,4 +1,4 @@
-package dbtools
+package mongo
 
 import (
 	"context"
@@ -19,7 +19,7 @@ type MongoDB struct {
 	batchLimit       int
 }
 
-func newMongoService(connectionString string, mgoLib mongoLib, bsonService bsonService, mongoTimeout time.Duration, rateLimit time.Duration, batchLimit int) *MongoDB {
+func NewMongoService(connectionString string, mgoLib mongoLib, bsonService bsonService, mongoTimeout time.Duration, rateLimit time.Duration, batchLimit int) *MongoDB {
 	return &MongoDB{
 		connectionString: connectionString,
 		mgoLib:           mgoLib,
@@ -30,10 +30,24 @@ func newMongoService(connectionString string, mgoLib mongoLib, bsonService bsonS
 	}
 }
 
+func NewDefaultMongoService(connectionString string) *MongoDB {
+	rateLimit := 15000000
+	batchLimit := 250
+	mongoTimeout := 60
+	return &MongoDB{
+		connectionString: connectionString,
+		mgoLib:           &labixMongo{},
+		bsonService:      &defaultBsonService{},
+		mongoTimeout:     time.Duration(mongoTimeout) * time.Second,
+		rateLimit:        time.Duration(rateLimit) * time.Millisecond,
+		batchLimit:       batchLimit,
+	}
+}
+
 func (m *MongoDB) DumpCollectionTo(database, collection string, writer io.Writer) error {
 	session, err := m.mgoLib.DialWithTimeout(m.connectionString, m.mongoTimeout)
 	if err != nil {
-		return fmt.Errorf("Couldn't diaaal mongodb session: %v", err)
+		return fmt.Errorf("Couldn't dial mongodb session: %v", err)
 	}
 	defer session.Close()
 	start := time.Now()

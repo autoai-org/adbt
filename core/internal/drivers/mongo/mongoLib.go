@@ -1,4 +1,4 @@
-package dbtools
+package mongo
 
 import (
 	"time"
