@@ -1,22 +1,11 @@
 <template>
   <v-app id="inspire">
-    <v-toolbar color="blue-grey" dark fixed app clipped-right>
+    <v-toolbar color="#006dad" dark fixed app clipped-right>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Database Backup Toolkit</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
-    <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list dense>
-        <v-list-tile @click.stop="left = !left">
-          <v-list-tile-action>
-            <v-icon>exit_to_app</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Open Temporary Drawer</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
+    <drawer :drawer="drawer"></drawer>
     <v-navigation-drawer v-model="left" temporary fixed></v-navigation-drawer>
     <v-content>
       <v-container fluid fill-height>
@@ -49,14 +38,18 @@
       </v-container>
     </v-content>
     <v-navigation-drawer v-model="right" right temporary fixed></v-navigation-drawer>
-    <v-footer color="blue-grey" class="white--text" app>
+    <v-footer color="#006dad" class="white--text" app>
       <span class="bottom_footer">Made with &hearts; by AutoAI</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import Drawer from '@/components/Drawer'
 export default {
+  components: {
+    Drawer
+  },
   data: () => ({
     drawer: null,
     drawerRight: null,

@@ -1,6 +1,6 @@
 package adbt
 
 type Backupable interface {
-	Backup()
-	Restore()
+	Backup() bool
+	Restore() bool
 }
