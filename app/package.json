@@ -14,8 +14,8 @@
   "dependencies": {
     "core-js": "3.0.1",
     "vue": "2.6.10",
-    "vue-router": "^3.0.4",
-    "vuetify": "1.5.10"
+    "vue-router": "3.0.4",
+    "vuetify": "1.5.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.5.5",
