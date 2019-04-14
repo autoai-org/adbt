@@ -1,0 +1,7 @@
+[[scheduler]]
+  identifier = "e17656c1-47d5-4242-9f5b-84ad0afd9017"
+  uri = "mongodb://192.168.0.106:27017/discovery"
+  periodicity = "daily"
+  time = "0:39"
+  database = "mongodb"
+  name = "test1"

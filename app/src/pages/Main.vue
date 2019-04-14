@@ -1,12 +1,11 @@
 <template>
   <v-app id="inspire">
     <v-toolbar color="#006dad" dark fixed app clipped-right>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.native="drawer = true"></v-toolbar-side-icon>
       <v-toolbar-title>Database Backup Toolkit</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
-    <drawer :drawer="drawer"></drawer>
-    <v-navigation-drawer v-model="left" temporary fixed></v-navigation-drawer>
+    <drawer :triggerDrawer="drawer"></drawer>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
@@ -37,7 +36,6 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-navigation-drawer v-model="right" right temporary fixed></v-navigation-drawer>
     <v-footer color="#006dad" class="white--text" app>
       <span class="bottom_footer">Made with &hearts; by AutoAI</span>
     </v-footer>
@@ -52,9 +50,6 @@ export default {
   },
   data: () => ({
     drawer: null,
-    drawerRight: null,
-    right: false,
-    left: false
   }),
   props: {
     source: String
