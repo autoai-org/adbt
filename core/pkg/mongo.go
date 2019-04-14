@@ -28,12 +28,12 @@ func (m *MongoDB) Restore() {
 
 func (m *MongoDB) prepare() []string {
 	createFolderIfNotExist("data")
-	createFolderIfNotExist(filepath.Join("data", "mongo"))
+	createFolderIfNotExist(filepath.Join("adbt", "mongo"))
 	currentTime := time.Now()
 	timelabel := currentTime.Format("2006-01-02")
 	return []string{
 		"--uri=" + m.URI,
-		"--archive=data/mongo/" + m.Name + "." + timelabel + ".gz",
+		"--archive=adbt/mongo/" + m.Name + "." + timelabel + ".gz",
 		"--forceTableScan",
 		"--gzip",
 	}

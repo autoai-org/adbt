@@ -30,9 +30,9 @@ func getDefaultConfig() adbtConfig {
 }
 
 func getConfigFilePath() string {
-	createFolderIfNotExist("data")
-	createFolderIfNotExist(filepath.Join("data", "config"))
-	adbtConfigToml := filepath.Join("data", "config", "config.toml")
+	createFolderIfNotExist("adbt")
+	createFolderIfNotExist(filepath.Join("adbt", "config"))
+	adbtConfigToml := filepath.Join("adbt", "config", "config.toml")
 	if _, err := os.Stat(adbtConfigToml); os.IsNotExist(err) {
 		createFileIfNotExist(adbtConfigToml)
 		// config file not exists, write default to it

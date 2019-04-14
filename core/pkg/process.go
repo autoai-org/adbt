@@ -15,6 +15,12 @@ type Process struct {
 	Params  []string
 }
 
+// Log handles the Process logs
+func (p *Process) Log() bool {
+
+	return true
+}
+
 // Run starts the process
 func (p *Process) Run() bool {
 	var stdoutBuf, stderrBuf bytes.Buffer
