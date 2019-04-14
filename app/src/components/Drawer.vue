@@ -1,11 +1,12 @@
 <template>
   <v-navigation-drawer
     id="app-drawer"
-    v-model="triggerDrawer"
+    v-model="drawer"
     app
     dark
     floating
     persistent
+    temporary
     mobile-break-point="991"
     width="260"
   >
@@ -39,9 +40,9 @@
           to="/"
         >
           <v-list-tile-action>
-            <v-icon>mdi-package-up</v-icon>
+            <v-icon color="black">supervisor_account</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title class="font-weight-light upgrade-text">Upgrade To PRO</v-list-tile-title>
+          <v-list-tile-title class="font-weight-light upgrade-text">AutoAI Membership</v-list-tile-title>
         </v-list-tile>
       </v-layout>
     </v-img>
@@ -61,13 +62,16 @@ export default {
       },
     ],
     responsive: false,
-    drawer:false,
+    drawer: false,
   }),
   watch: {
     triggerDrawer(val) {
-      // eslint-disable-next-line
-      console.log(val)
-      this.drawer = this.triggerDrawer
+      this.drawer = val
+    },
+    drawer(val) {
+      if (val === false) {
+        this.$emit("onClose", true)
+      }
     }
   }
 };

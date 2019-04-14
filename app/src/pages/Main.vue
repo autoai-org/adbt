@@ -1,37 +1,19 @@
 <template>
   <v-app id="inspire">
-    <v-toolbar color="#006dad" dark fixed app clipped-right>
-      <v-toolbar-side-icon @click.native="drawer = true"></v-toolbar-side-icon>
+    <v-toolbar color="#006dad" dark fixed app clipped-right extended>
+      <v-toolbar-side-icon @click.native="triggerNavbar()"></v-toolbar-side-icon>
       <v-toolbar-title>Database Backup Toolkit</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn color="indigo lighten-2" dark medium absolute bottom right fab>
+        <v-icon>add</v-icon>
+      </v-btn>
     </v-toolbar>
-    <drawer :triggerDrawer="drawer"></drawer>
+    <drawer :triggerDrawer="drawer" @onClose="onNavbarClose()"></drawer>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>code</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  icon
-                  large
-                  href="https://codepen.io/johnjleider/pen/KQrPKJ"
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-codepen</v-icon>
-                </v-btn>
-              </template>
-              <span>Codepen</span>
-            </v-tooltip>
+            <router-view></router-view>
           </v-flex>
         </v-layout>
       </v-container>
@@ -43,16 +25,25 @@
 </template>
 
 <script>
-import Drawer from '@/components/Drawer'
+import Drawer from "@/components/Drawer";
 export default {
   components: {
     Drawer
   },
   data: () => ({
     drawer: null,
+    t_drawer: false
   }),
   props: {
     source: String
+  },
+  methods: {
+    triggerNavbar() {
+      this.drawer = true;
+    },
+    onNavbarClose() {
+      this.drawer = false;
+    }
   }
 };
 </script>
