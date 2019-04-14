@@ -1,6 +1,10 @@
 package adbt
 
-import "time"
+import (
+	"log"
+	"path/filepath"
+	"time"
+)
 
 type MongoDB struct {
 	URI      string
@@ -8,13 +12,14 @@ type MongoDB struct {
 	Database string
 }
 
-func (m *MongoDB) Backup() {
+func (m *MongoDB) Backup() bool {
+	log.Println("Backing up " + m.Name + "...")
 	params := m.prepare()
 	process := Process{
 		Command: "mongodump",
 		Params:  params,
 	}
-	process.Run()
+	return process.Run()
 }
 
 func (m *MongoDB) Restore() {
@@ -23,7 +28,7 @@ func (m *MongoDB) Restore() {
 
 func (m *MongoDB) prepare() []string {
 	createFolderIfNotExist("data")
-	createFolderIfNotExist("data/mongo")
+	createFolderIfNotExist(filepath.Join("data", "mongo"))
 	currentTime := time.Now()
 	timelabel := currentTime.Format("2006-01-02")
 	return []string{

@@ -28,3 +28,17 @@ func createFolderIfNotExist(folderPath string) {
 		}
 	}
 }
+
+func createFileIfNotExist(filePath string) {
+	exist, err := isPathExists(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if !exist {
+		f, err := os.Create(filePath)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer f.Close()
+	}
+}
