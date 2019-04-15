@@ -30,7 +30,7 @@ func getLogFilePath() string {
 	return logFilePath
 }
 
-func (b BackLog) write() {
+func (b BackLog) writeLog() {
 	logs := readLog()
 	logs.BackLogs = append(logs.BackLogs, b)
 	fileContent, err := json.Marshal(logs)

@@ -141,7 +141,7 @@ func NewServer(port string) {
 	r.POST("/jobs/now", backupNow)
 	r.GET("/jobs", getAllJobs)
 	r.DELETE("/jobs", removeJob)
-
+	r.POST("/databases/test", testConnString)
 	r.GET("/status", getStatus)
 	r.Run("0.0.0.0:" + port)
 }

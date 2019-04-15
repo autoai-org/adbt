@@ -25,6 +25,10 @@ function createWindow () {
     createProtocol('app')
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
+    win.fcWidget.init({
+      token: "56e9e8cb-5e94-4ec8-b3fb-b044d50f5ad7",
+      host: "https://wchat.freshchat.com"
+    });
   }
 
   win.on('closed', () => {

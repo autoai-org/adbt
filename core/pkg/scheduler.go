@@ -11,7 +11,7 @@ func loadScheduler(config adbtConfig) Scheduler {
 					URI:  scheduler.URI,
 					Name: scheduler.Name,
 				}
-				m.Backup()
+				m.Backup(scheduler.Identifier)
 			} else {
 				_ = fmt.Errorf("Unsupported Database")
 			}

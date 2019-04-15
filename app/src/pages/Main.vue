@@ -4,7 +4,16 @@
       <v-toolbar-side-icon @click.native="triggerNavbar()"></v-toolbar-side-icon>
       <v-toolbar-title>Database Backup Toolkit</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="indigo lighten-2" dark medium absolute bottom right fab>
+      <v-btn
+        color="indigo lighten-2"
+        dark
+        medium
+        absolute
+        bottom
+        right
+        fab
+        @click="triggerCreateDialog()"
+      >
         <v-icon>add</v-icon>
       </v-btn>
     </v-toolbar>
@@ -21,16 +30,35 @@
     <v-footer color="#006dad" class="white--text" app>
       <span class="bottom_footer">Made with &hearts; by AutoAI</span>
     </v-footer>
+    <v-dialog v-model="addDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click="addDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click="addDialog = false">Save</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+
+        <new class="newJobForm"></new>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
 import Drawer from "@/components/Drawer";
+import New from "@/components/New";
 export default {
   components: {
-    Drawer
+    Drawer,
+    New
   },
   data: () => ({
+    addDialog: false,
     drawer: null,
     t_drawer: false
   }),
@@ -43,6 +71,9 @@ export default {
     },
     onNavbarClose() {
       this.drawer = false;
+    },
+    triggerCreateDialog() {
+      this.addDialog = true;
     }
   }
 };
@@ -54,5 +85,9 @@ body {
 }
 .bottom_footer {
   margin-left: 10px;
+}
+.newJobForm {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
