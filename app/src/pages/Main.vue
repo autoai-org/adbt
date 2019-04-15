@@ -31,20 +31,7 @@
       <span class="bottom_footer">Made with &hearts; by AutoAI</span>
     </v-footer>
     <v-dialog v-model="addDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="addDialog = false">
-            <v-icon>close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark flat @click="addDialog = false">Save</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-
-        <new class="newJobForm"></new>
-      </v-card>
+        <new @onDialogClose="addDialog = false" ></new>
     </v-dialog>
   </v-app>
 </template>
@@ -85,9 +72,5 @@ body {
 }
 .bottom_footer {
   margin-left: 10px;
-}
-.newJobForm {
-  margin-left: 10px;
-  margin-right: 10px;
 }
 </style>

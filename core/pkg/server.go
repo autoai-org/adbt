@@ -16,19 +16,25 @@ type deleteSchedulerRequest struct {
 func createSchedulerHandler(c *gin.Context) {
 	var createSchedulerRequest backupScheduler
 	c.BindJSON(&createSchedulerRequest)
-	addJobConfig(createSchedulerRequest)
 	config := readConfig()
+	jobExists := false
 	for _, job := range config.Jobs {
 		if job.Name == createSchedulerRequest.Name {
-			c.JSON(http.StatusBadRequest, gin.H{
-				"code":400,
-				"status":"FAILED",
-				"info": "Name already exists",
-			})
+			jobExists = true
 		}
 	}
-	sched = loadScheduler(config)
-	c.JSON(http.StatusOK, sched.jobs)
+	if jobExists {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":400,
+			"status":"FAILED",
+			"info": "Name already exists",
+		})
+	} else {
+		addJobConfig(createSchedulerRequest)
+		config = readConfig()
+		sched = loadScheduler(config)
+		c.JSON(http.StatusOK, sched.jobs)
+	}
 }
 
 func getAllJobs(c *gin.Context) {
