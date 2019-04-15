@@ -41,6 +41,28 @@ func getAllJobs(c *gin.Context) {
 	c.JSON(http.StatusOK, sched.jobs)
 }
 
+func getJobDetail(c *gin.Context) {
+	identifier := c.Param("identifier")
+	config := readConfig()
+	var requestedJob backupScheduler
+	var hasFound bool = false
+	for _, job := range config.Jobs {
+		if (job.Identifier == identifier) {
+			requestedJob = job
+			hasFound = true
+		}
+	}
+	if hasFound {
+		c.JSON(http.StatusOK, requestedJob)
+	} else {
+		c.JSON(http.StatusNotFound, gin.H{
+			"code":404,
+			"status":"FAILED",
+			"info": "Requested Job Not Found",
+		})
+	}
+}
+
 func removeJob(c *gin.Context) {
 	var deleteReq deleteSchedulerRequest
 	c.BindJSON(&deleteReq)
@@ -143,6 +165,7 @@ func NewServer(port string) {
 	r := gin.Default()
 	r.Use(beforeResponse())
 	r.Use(gin.Recovery())
+	r.GET("/job/:identifier", getJobDetail)
 	r.POST("/jobs", createSchedulerHandler)
 	r.POST("/jobs/now", backupNow)
 	r.GET("/jobs", getAllJobs)

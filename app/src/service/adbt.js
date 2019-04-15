@@ -21,6 +21,20 @@ class AdbtService {
     async getJobs() {
         return await this._get(this.endpoint + '/jobs')
     }
+    async getJobDetail(identifier) {
+        return await this._get(this.endpoint+ '/job/' + identifier)
+    }
+    async getDetailedJobs(jobs) {
+        let self = this
+        let requestedJobs = jobs
+        if(!jobs || typeof(jobs) === 'undefined') {
+            requestedJobs = await this.getJobs()
+            requestedJobs = requestedJobs.data
+        }
+        return await Promise.all(requestedJobs.map(async job => {
+            return await self.getJobDetail(job.identifier)
+        }))
+    }
     async deleteJobs(identifier) {
         return await this._delete(this.endpoint + '/jobs', {
             'identifier': identifier
