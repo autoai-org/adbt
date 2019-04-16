@@ -1,8 +1,10 @@
 package adbt
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 func isPathExists(path string) (bool, error) {
@@ -17,12 +19,16 @@ func isPathExists(path string) (bool, error) {
 }
 
 func createFolderIfNotExist(folderPath string) {
+	execPath, _ := os.Executable()
+	realPath := filepath.Join(execPath, folderPath)
 	exist, err := isPathExists(folderPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if !exist {
-		err = os.Mkdir(folderPath, os.ModePerm)
+		absPath, _ := filepath.Abs(realPath)
+		fmt.Println("Creating folder" + absPath)
+		err = os.Mkdir(realPath, os.ModePerm)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -30,12 +36,14 @@ func createFolderIfNotExist(folderPath string) {
 }
 
 func createFileIfNotExist(filePath string) {
-	exist, err := isPathExists(filePath)
+	execPath, _ := os.Executable()
+	realPath := filepath.Join(execPath, filePath)
+	exist, err := isPathExists(realPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if !exist {
-		f, err := os.Create(filePath)
+		f, err := os.Create(realPath)
 		if err != nil {
 			log.Fatal(err)
 		}

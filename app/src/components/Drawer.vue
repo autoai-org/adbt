@@ -35,9 +35,20 @@
           <v-list-tile-title v-text="link.text"/>
         </v-list-tile>
         <v-list-tile
-          disabled
+          v-for="(link, id) in externalLinks"
+          :key="'el-' + id"
+          @click="navto(link.to)"
+          avatar
+          class="v-list-item"
+        >
+          <v-list-tile-action>
+            <v-icon>info</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-title v-text="link.text"/>
+        </v-list-tile>
+        <v-list-tile
           class="v-list-item v-list__tile--buy"
-          to="/"
+          @click="navto('https://hub.autoai.org/account/signin')"
         >
           <v-list-tile-action>
             <v-icon color="black">supervisor_account</v-icon>
@@ -50,6 +61,7 @@
 </template>
 
 <script>
+import open from 'open'
 export default {
   props: ['triggerDrawer'],
   data: () => ({
@@ -57,8 +69,18 @@ export default {
     links: [
       {
         to: "/dashboard",
-        icon: "mdi-view-dashboard",
+        icon: "dashboard",
         text: "Dashboard"
+      },
+    ],
+    externalLinks: [
+      {
+        to: "https://github.com/unarxiv/CVPM/wiki/Privacy-Policy",
+        text: "Privacy Policy"
+      },
+      {
+        to: "https://github.com/unarxiv/CVPM/wiki/Terms-of-Use",
+        text: "Terms of Use"
       },
     ],
     responsive: false,
@@ -72,6 +94,11 @@ export default {
       if (val === false) {
         this.$emit("onClose", true)
       }
+    }
+  },
+  methods: {
+    navto (link) {
+      open(link)
     }
   }
 };

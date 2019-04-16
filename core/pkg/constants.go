@@ -14,5 +14,4 @@ func isDatabaseSupported(db string) bool {
 		}
 	}
 	return false
-
 }
