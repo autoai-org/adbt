@@ -20,6 +20,7 @@ func isPathExists(path string) (bool, error) {
 
 func createFolderIfNotExist(folderPath string) {
 	execPath, _ := os.Executable()
+	execPath = filepath.Dir(execPath)
 	realPath := filepath.Join(execPath, folderPath)
 	exist, err := isPathExists(folderPath)
 	if err != nil {
@@ -28,7 +29,7 @@ func createFolderIfNotExist(folderPath string) {
 	if !exist {
 		absPath, _ := filepath.Abs(realPath)
 		fmt.Println("Creating folder" + absPath)
-		err = os.Mkdir(realPath, os.ModePerm)
+		err = os.Mkdir(absPath, os.ModePerm)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -37,6 +38,7 @@ func createFolderIfNotExist(folderPath string) {
 
 func createFileIfNotExist(filePath string) {
 	execPath, _ := os.Executable()
+	execPath = filepath.Dir(execPath)
 	realPath := filepath.Join(execPath, filePath)
 	exist, err := isPathExists(realPath)
 	if err != nil {

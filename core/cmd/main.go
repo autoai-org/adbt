@@ -15,6 +15,12 @@ func main() {
 	app.Usage = "Automatic Database Backup Toolkit"
 	app.Commands = []cli.Command{
 		{
+			Name:    "add",
+			Aliases: []string{"add"},
+			Usage:   "[Wizard] Add a backup job",
+			Action:  addHandler,
+		},
+		{
 			Name:    "install",
 			Aliases: []string{"i"},
 			Usage:   "Install daemon to the System",

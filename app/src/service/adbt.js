@@ -38,8 +38,8 @@ class AdbtService {
             return await self.getJobDetail(job.identifier)
         }))
     }
-    async deleteJobs(identifier) {
-        return await this._delete(this.endpoint + '/jobs', {
+    async deleteJob (identifier) {
+        return await this._delete(this.endpoint + '/job/' + identifier, {
             'identifier': identifier
         })
     }
@@ -68,6 +68,12 @@ class AdbtService {
             'database': database,
             'name': name
         })
+    }
+    async runJob(identifier) {
+        return await this._post(this.endpoint + '/job/now/' + identifier)
+    }
+    async getLogs(identifier) {
+        return await this._get(this.endpoint + '/logs/' + identifier)
     }
 }
 

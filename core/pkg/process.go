@@ -18,6 +18,7 @@ type Process struct {
 
 // Run starts the process
 func (p *Process) Run(identifier string) bool {
+	config := readConfig()
 	var stdoutBuf, stderrBuf bytes.Buffer
 	cmd := exec.Command(p.Command, p.Params...)
 	fmt.Println(cmd.Args)
@@ -30,11 +31,17 @@ func (p *Process) Run(identifier string) bool {
 	backlog.Identifier = identifier
 	backlog.Time = time.Now().String()
 	err := cmd.Start()
+	timer := time.AfterFunc(time.Duration(config.Timeout )* time.Second, func() {
+		backlog.Success = false
+		backlog.Log = "Cannot dial due to timeout"
+		backlog.writeLog()
+		cmd.Process.Kill()
+	})
 	if err != nil {
 		backlog.Success = false
 		backlog.Log = err.Error()
 		backlog.writeLog()
-		log.Fatalf("ADBT failed with '%s'\n", err)
+		log.Printf("ADBT failed with '%s'\n", err)
 
 	}
 	go func() {
@@ -44,15 +51,18 @@ func (p *Process) Run(identifier string) bool {
 		_, errStderr = io.Copy(stderr, stderrIn)
 	}()
 	err = cmd.Wait()
+	timer.Stop()
 	if err != nil {
-		log.Fatalf("ADBT failed with %s\n", err)
+		log.Printf("ADBT failed with %s\n", err)
 		backlog.Success = false
 		backlog.Log = err.Error()
 		backlog.writeLog()
 	}
 	if errStdout != nil || errStderr != nil {
-		log.Fatal("failed to capture stdout or stderr\n")
+		log.Printf("failed to capture stdout or stderr\n")
 	}
+	fmt.Println("Writing Logs...")
+
 	outStr, errStr := string(stdoutBuf.Bytes()), string(stderrBuf.Bytes())
 	fmt.Printf("\nout:\n%s\nerr:\n%s\n", outStr, errStr)
 	backlog.Success = true

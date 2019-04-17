@@ -3,6 +3,7 @@ package adbt
 var
 (
 	SupportedDatabases = []string{"MongoDB", "MySQL"}
+	SupportedPeriods  = []string{"Weekly", "Daily"}
 )
 
 // helper functions

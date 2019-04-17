@@ -2,12 +2,12 @@ package adbt
 
 import (
 	"fmt"
+	"github.com/kardianos/service"
 	"log"
 	"os"
 	"os/user"
 	"runtime"
-	"github.com/kardianos/service"
-	)
+)
 
 
 type sol struct {

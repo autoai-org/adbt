@@ -4,10 +4,10 @@
       <v-btn icon dark @click="closeDialog()">
         <v-icon>close</v-icon>
       </v-btn>
-      <v-toolbar-title>New Backup Job</v-toolbar-title>
+      <v-toolbar-title>Modify Backup Job</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn dark flat @click="saveJob()">
+        <v-btn dark flat @click="modifyJob()">
           <v-icon>done</v-icon>Save
         </v-btn>
       </v-toolbar-items>
@@ -76,6 +76,7 @@
 <script>
 import { adbtService } from "@/service/adbt";
 export default {
+  props: ['item'],
   data: () => ({
     valid: true,
     name: "",
@@ -90,8 +91,11 @@ export default {
     timepicker: false,
     snacktext: null
   }),
+  created () {
+    this.loadItem()
+  },
   methods: {
-    validate() {
+    validate () {
       if (this.$refs.form.validate()) {
         let self = this;
         this.snackbar = true;
@@ -107,16 +111,24 @@ export default {
           });
       }
     },
-    reset() {
+    loadItem () {
+        this.name = this.item.name
+        this.uri = this.item.uri
+        this.selected_period = this.item.periodicity
+        this.selected_database = this.item.database
+        this.time = this.item.time
+    },
+    reset () {
       this.$refs.form.reset();
     },
-    resetValidation() {
+    resetValidation () {
       this.$refs.form.resetValidation();
     },
-    saveJob() {
+    modifyJob () {
       let self = this;
       adbtService
-        .addJobs(
+        .modifyJob(
+          this.item.identifier,
           this.uri,
           this.selected_period,
           this.time,
@@ -124,7 +136,7 @@ export default {
           this.name
         )
         .then(function(res) {
-          self.snackbar = 'Successfully Added' + self.name;
+          self.snackbar = 'Successfully Modified' + self.name;
           self.snacktext = res.data.info;
           self.closeDialog()
         })

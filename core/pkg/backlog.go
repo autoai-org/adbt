@@ -2,6 +2,7 @@ package adbt
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -31,6 +32,7 @@ func getLogFilePath() string {
 }
 
 func (b BackLog) writeLog() {
+	fmt.Println("Writing Logs...")
 	logs := readLog()
 	logs.BackLogs = append(logs.BackLogs, b)
 	fileContent, err := json.Marshal(logs)

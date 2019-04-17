@@ -11,21 +11,13 @@ import (
 	"github.com/BurntSushi/toml"
 )
 
-type backupScheduler struct {
-	Identifier  string `toml:"identifier" json:"identifier"`
-	URI         string `toml:"uri" json:"uri"`
-	Periodicity string `toml:"periodicity" json:"periodicity"`
-	Time        string `toml:"time" json:"time"`
-	Database    string `toml:"database" json:"database"`
-	Name        string `toml:"name" json:"name"`
-}
-
 type adbtConfig struct {
+	Timeout int `toml:"timeouts"`
 	Jobs []backupScheduler `toml:"scheduler"`
 }
 
 func getDefaultConfig() adbtConfig {
-	var config = adbtConfig{}
+	var config = adbtConfig{Timeout: 20}
 	return config
 }
 

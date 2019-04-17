@@ -78,11 +78,6 @@ func (j *Job) Every(frequencies ...int) *Job {
 	return j
 }
 
-// EverySingle is deprecated predecessor to Every()
-func (j *Job) EverySingle() *Job {
-	return j.Every()
-}
-
 // At method fills the given Job struct atHour and atMinute fields
 // with the provided information
 func (j *Job) At(t string) *Job {
@@ -118,7 +113,6 @@ func (j *Job) isAtUsedIncorrectly() bool {
 func (j *Job) unitNotDayOrWEEKDAY() bool {
 	return j.unit == second || j.unit == minute ||
 		j.unit == hour || j.unit == week
-
 }
 
 // Returns false when job unit is or any of the weekdays, vice versa.

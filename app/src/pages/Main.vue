@@ -22,7 +22,7 @@
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink>
-            <router-view></router-view>
+            <router-view :key="needRefresh"></router-view>
           </v-flex>
         </v-layout>
       </v-container>
@@ -31,7 +31,7 @@
       <span class="bottom_footer">Made with &hearts; by AutoAI</span>
     </v-footer>
     <v-dialog v-model="addDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-        <new @onDialogClose="addDialog = false" ></new>
+        <new @onDialogClose="afterCreated()" ></new>
     </v-dialog>
   </v-app>
 </template>
@@ -47,7 +47,8 @@ export default {
   data: () => ({
     addDialog: false,
     drawer: null,
-    t_drawer: false
+    t_drawer: false,
+    needRefresh:false,
   }),
   props: {
     source: String
@@ -59,8 +60,12 @@ export default {
     onNavbarClose() {
       this.drawer = false;
     },
-    triggerCreateDialog() {
+    triggerCreateDialog () {
       this.addDialog = true;
+    },
+    afterCreated () {
+      this.addDialog = false;
+      this.needRefresh = true;
     }
   }
 };
