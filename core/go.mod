@@ -24,6 +24,6 @@ require (
 	golang.org/x/crypto v0.0.0-20190411191339-88737f569e3a // indirect
 	golang.org/x/net v0.0.0-20190415214537-1da14a5a36f2 // indirect
 	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 // indirect
-	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
+	gopkg.in/go-playground/validator.v9 v9.28.0 // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
