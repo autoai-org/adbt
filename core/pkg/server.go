@@ -37,6 +37,33 @@ func createSchedulerHandler(c *gin.Context) {
 	}
 }
 
+func modifySchedulerHandler(c * gin.Context) {
+	identifier := c.Param("identifier")
+	var modifySchedulerRequest backupScheduler
+	c.BindJSON(&modifySchedulerRequest)
+	config := readConfig()
+	jobExists := false
+	var requestedId int
+	for idx, job := range config.Jobs {
+		if job.Identifier == identifier {
+			jobExists = true
+			requestedId = idx
+		}
+	}
+	if jobExists {
+		config.Jobs[requestedId] = modifySchedulerRequest
+		writeConfig(config)
+		c.JSON(http.StatusOK, config.Jobs[requestedId])
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":404,
+			"status":"FAILED",
+			"info": "Job Not Found",
+		})
+	}
+
+}
+
 func getAllJobs(c *gin.Context) {
 	c.JSON(http.StatusOK, sched.jobs)
 }
@@ -166,6 +193,7 @@ func NewServer(port string) {
 	r.Use(beforeResponse())
 	r.Use(gin.Recovery())
 	r.GET("/job/:identifier", getJobDetail)
+	r.PATCH("/job/:identifier", modifySchedulerHandler)
 	r.POST("/jobs", createSchedulerHandler)
 	r.POST("/jobs/now", backupNow)
 	r.GET("/jobs", getAllJobs)

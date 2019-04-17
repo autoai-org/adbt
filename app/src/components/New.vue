@@ -129,7 +129,6 @@ export default {
           self.closeDialog()
         })
         .catch(function(err) {
-          console.log(err.response)
           self.snackbar = true;
           self.snacktext = err.response.data.info;
         });

@@ -50,15 +50,11 @@
 </template>
 
 <script>
-import MaterialCard from '@/components/Card'
 import MaterialChartCard from '@/components/ChartCard'
-import MaterialStatsCard from '@/components/StatsCard'
 import JobList from '@/components/JobList'
 export default {
   components: {
-      MaterialCard,
       MaterialChartCard,
-      MaterialStatsCard,
       JobList
   },
   data () {

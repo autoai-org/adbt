@@ -15,6 +15,9 @@ class AdbtService {
             data: data
         })
     }
+    async _patch(url, data) {
+        return await axios.patch(url, data)
+    } 
     async getStatus() {
         return await this._get(this.endpoint + '/status')
     }
@@ -54,6 +57,16 @@ class AdbtService {
             'uri': uri,
             'name': name,
             'database': database
+        })
+    }
+    async modifyJob(identifier, uri, period, time, database, name) {
+        return await this._patch(this.endpoint + '/job/' + identifier, {
+            'identifier': identifier,
+            'uri': uri,
+            'periodicity': period,
+            'time': time,
+            'database': database,
+            'name': name
         })
     }
 }
