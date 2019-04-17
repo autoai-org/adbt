@@ -19,7 +19,7 @@
     "open": "6.1.0",
     "vue": "2.6.10",
     "vue-chartist": "2.2.0",
-    "vue-router": "3.0.4",
+    "vue-router": "3.0.6",
     "vuetify": "1.5.11"
   },
   "devDependencies": {
