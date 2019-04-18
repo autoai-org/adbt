@@ -7,6 +7,7 @@
       <v-flex md12 lg6>
         <calendar></calendar>
       </v-flex>
+      <!--
       <v-flex md12 sm12 lg4>
         <material-chart-card
           :data="dailySalesChart.data"
@@ -27,6 +28,7 @@
           </template>
         </material-chart-card>
       </v-flex>
+      -->
     </v-layout>
   </v-container>
 </template>

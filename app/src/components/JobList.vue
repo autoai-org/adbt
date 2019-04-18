@@ -120,10 +120,11 @@ export default {
       this.modifyDialog = true
     },
     runJob (identifier) {
-      let self = this
       adbtService.runJob(identifier).then(function (res) {
+        // eslint-disable-next-line
         console.log(res)
       }).catch(function(err) {
+        // eslint-disable-next-line
         console.error(err.response)
       })
     },

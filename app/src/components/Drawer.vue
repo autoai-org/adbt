@@ -68,12 +68,16 @@ export default {
     logo: "../assets/logo.png",
     links: [
       {
-        to: "/dashboard",
+        to: "/",
         icon: "dashboard",
         text: "Dashboard"
       },
     ],
     externalLinks: [
+      {
+        to: "https://github.com/unarxiv/adbt/issues",
+        text: "Issues & Bugs Reporting"
+      },
       {
         to: "https://github.com/unarxiv/CVPM/wiki/Privacy-Policy",
         text: "Privacy Policy"
