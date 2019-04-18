@@ -1,0 +1,21 @@
+name: adbt
+version: git
+summary: Automatic Database Backup Toolkit
+description: |
+  Automatic Database Backup Toolkit Used by AutoAI/AICAMP.CO.,LTD
+
+grade: devel
+confinement: devmode
+
+apps:
+  adbt:
+    command: core/adbt
+
+parts:
+  go:
+    source-tag: latest
+  adbt:
+    after: [go]
+    source: core/cmd
+    plugin: go
+    go-importpath: github.com/unarxiv/adbt/core
