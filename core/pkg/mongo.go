@@ -1,9 +1,8 @@
-package drivers
+package adbt
 
 import (
 	"context"
 	"fmt"
-	"github.com/unarxiv/adbt/pkg"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -20,7 +19,7 @@ type MongoDB struct {
 func (m *MongoDB) Backup(identifier string) bool {
 	fmt.Println("Backing up " + m.Name + "...")
 	params := m.prepare()
-	process := adbt.Process{
+	process := Process{
 		Command: "mongodump",
 		Params:  params,
 	}
@@ -32,7 +31,7 @@ func (m *MongoDB) Restore() {
 }
 
 func (m *MongoDB) prepare() []string {
-	adbt.createFolderIfNotExist(filepath.Join("adbt", "mongo"))
+	createFolderIfNotExist(filepath.Join("adbt", "mongo"))
 	currentTime := time.Now()
 	timelabel := currentTime.Format("2006-01-02")
 	return []string{

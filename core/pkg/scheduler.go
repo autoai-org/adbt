@@ -1,6 +1,8 @@
 package adbt
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type backupScheduler struct {
 	Identifier  string `toml:"identifier" json:"identifier"`
