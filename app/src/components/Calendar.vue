@@ -22,7 +22,7 @@
                     @click="getLogsJob(logsMap[date])"
                   >
                     <p
-                      style="font-size:1.5vw;margin-bottom:0"
+                      style="font-size:1.0vw;margin-bottom:0"
                     >{{ parseRatio(logsMap[date]) + '% Passed' }}</p>
                   </v-btn>
                   <v-btn
@@ -35,7 +35,7 @@
                     @click="getLogsJob(logsMap[date])"
                   >
                     <p
-                      style="font-size:1.5vw;margin-bottom:0"
+                      style="font-size:1.0vw;margin-bottom:0"
                     >{{ parseRatio(logsMap[date]) + '% Passed' }}</p>
                   </v-btn>
                 </template>

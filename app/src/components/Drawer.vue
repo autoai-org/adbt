@@ -72,6 +72,11 @@ export default {
         icon: "dashboard",
         text: "Dashboard"
       },
+      {
+        to: "/signin",
+        icon: "account_circle",
+        text: "Sign In"
+      },
     ],
     externalLinks: [
       {

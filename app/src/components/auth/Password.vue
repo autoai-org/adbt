@@ -1,31 +1,14 @@
 <template>
   <div>
     <div class="text-xs-center">
-      <VChip
-        class="mb-3"
-        outline
-        @click="$emit('prev')"
-      >
-        <VIcon
-          color="primary"
-          left
-        >
-          mdi-account-circle
-        </VIcon>
-        <span
-          class="body-2"
-          v-text="email"
-        />
-        <VIcon
-          color="black"
-          right
-        >
-          mdi-chevron-down
-        </VIcon>
+      <VChip class="mb-3" outline @click="$emit('prev')">
+        <VIcon color="primary" left>mdi-account-circle</VIcon>
+        <span class="body-2" v-text="email"/>
+        <VIcon color="black" right>mdi-chevron-down</VIcon>
       </VChip>
     </div>
 
-    <VTextField
+    <v-text-field
       v-model="internalValue"
       :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
       :type="show ? 'text' : 'password'"
@@ -36,13 +19,8 @@
     />
 
     <div class="text-xs-left">
-      <VLayout
-        align-center
-        justify-space-between
-      >
-        <BaseText>
-          Forgot password?
-        </BaseText>
+      <v-layout align-center justify-space-between>
+        <BaseText>Forgot password?</BaseText>
 
         <VBtn
           :disabled="!internalValue"
@@ -51,80 +29,69 @@
           color="indigo darken-1"
           depressed
           @click="submit"
-        >
-          Next
-        </VBtn>
-      </VLayout>
+        >Next</VBtn>
+      </v-layout>
     </div>
   </div>
 </template>
 
 <script>
-  // Utilities
-  import {
-    mapActions,
-    mapMutations,
-    mapState
-  } from 'vuex'
+// Utilities
+import BaseText from "@/components/auth/BaseText";
 
-  export default {
-    data: () => ({
-      show: false
-    }),
+import { mapActions, mapMutations, mapState } from "vuex";
 
-    computed: {
-      ...mapState([
-        'email',
-        'password',
-        'isLoading'
-      ]),
-      internalValue: {
-        get () {
-          return this.$store.state.password
-        },
-        set (val) {
-          this.setPassword(val)
-        }
-      }
-    },
-
-    methods: {
-      ...mapActions('cognito', ['signInUser']),
-      ...mapMutations([
-        'setEmail',
-        'setPassword',
-        'setIsLoading',
-        'setSnackbar'
-      ]),
-      submit () {
-        this.hasError = false
-        this.setIsLoading(true)
-        this.signInUser({
-          username: this.email,
-          password: this.password
-        })
-          .then(() => {
-            this.setSnackbar({
-              type: 'success',
-              msg: `Successfully signed in user ${this.email}`
-            })
-
-            this.setEmail('')
-            this.$router.replace('/account/me')
-          })
-          .catch(res => {
-            this.setSnackbar({
-              type: 'error',
-              msg: res
-            })
-          })
-          .finally(() => {
-            this.setIsLoading(false)
-            this.setPassword('')
-          })
+export default {
+  data: () => ({
+    show: false
+  }),
+  components: {
+    BaseText
+  },
+  computed: {
+    ...mapState(["email", "password", "isLoading"]),
+    internalValue: {
+      get() {
+        return this.$store.state.password;
+      },
+      set(val) {
+        this.setPassword(val);
       }
     }
+  },
+
+  methods: {
+    ...mapActions("cognito", ["signInUser"]),
+    ...mapMutations(["setEmail", "setPassword", "setIsLoading", "setSnackbar"]),
+    submit() {
+      this.hasError = false;
+      this.setIsLoading(true);
+      this.signInUser({
+        username: this.email,
+        password: this.password
+      })
+        .then(() => {
+          this.setSnackbar({
+            type: "success",
+            msg: `Successfully signed in user ${this.email}`
+          });
+
+          this.setEmail("");
+          this.$router.replace("/");
+        })
+        .catch(res => {
+          this.setSnackbar({
+            type: "error",
+            msg: res
+          });
+        })
+        .finally(() => {
+          this.setIsLoading(false);
+          this.setPassword("");
+        });
+    }
   }
+};
 </script>
 
 <style lang="scss">
