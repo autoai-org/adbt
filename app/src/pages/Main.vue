@@ -28,7 +28,7 @@
       </v-container>
     </v-content>
     <v-footer color="#006dad" class="white--text" app>
-      <span class="bottom_footer">Made with &hearts; by AutoAI</span>
+      <span class="bottom_footer">Made with &hearts; at AutoAI</span>
     </v-footer>
     <v-dialog v-model="addDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
         <new @onDialogClose="afterCreated()" ></new>

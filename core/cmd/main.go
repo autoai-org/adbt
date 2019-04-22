@@ -15,6 +15,12 @@ func main() {
 	app.Usage = "Automatic Database Backup Toolkit"
 	app.Commands = []cli.Command{
 		{
+			Name:    "login",
+			Aliases: []string{"l"},
+			Usage:   "Login to the cloud sync server",
+			Action:  loginHandler,
+		},
+		{
 			Name:    "add",
 			Aliases: []string{"add"},
 			Usage:   "[Wizard] Add a backup job",

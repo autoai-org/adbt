@@ -77,7 +77,7 @@ export default {
           });
 
           this.setEmail("");
-          this.$router.replace("/");
+          this.$router.replace("/post");
         })
         .catch(res => {
           this.setSnackbar({

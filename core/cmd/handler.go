@@ -58,3 +58,10 @@ func addHandler(c *cli.Context) error {
 func listHandler () {
 
 }
+
+func loginHandler (c *cli.Context) error {
+	username := c.Args().Get(0)
+	uid := c.Args().Get(1)
+	adbt.Login(username, uid)
+	return nil
+}

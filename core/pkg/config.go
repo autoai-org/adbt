@@ -12,6 +12,8 @@ import (
 )
 
 type adbtConfig struct {
+	Username string `toml:"username"`
+	UID string `toml:"userid"`
 	Timeout int `toml:"timeouts"`
 	Jobs []backupScheduler `toml:"scheduler"`
 }

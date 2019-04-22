@@ -16,7 +16,7 @@
           <v-list-tile-avatar color="white">
             <v-img height="34" contain/>
           </v-list-tile-avatar>
-          <v-list-tile-title class="title">ADBT</v-list-tile-title>
+          <v-list-tile-title class="title">{{username}}</v-list-tile-title>
         </v-list-tile>
         <v-divider/>
         <v-list-tile v-if="responsive">
@@ -102,6 +102,15 @@ export default {
     drawer(val) {
       if (val === false) {
         this.$emit("onClose", true)
+      }
+    }
+  },
+  computed: {
+    username() {
+      try {
+        return  this.$store.state.cognito.user.username
+      } catch (error) {
+        return "ADBT"
       }
     }
   },

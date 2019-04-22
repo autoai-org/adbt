@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Main from '@/pages/Main'
 import Home from '@/pages/Home'
 import SignIn from '@/pages/auth/SignIn'
+import Post from '@/pages/auth/PostHook'
+
 Vue.use(Router)
 
 export default new Router({
@@ -19,6 +21,10 @@ export default new Router({
                 {
                     path: 'signin',
                     component: SignIn
+                },
+                {
+                    path: 'post',
+                    component: Post
                 }
             ]
         },
