@@ -22,7 +22,7 @@ require (
 	github.com/nmiyake/pkg v0.0.0-20181213185804-ae0375219445 // indirect
 	github.com/nwaples/rardecode v1.0.0 // indirect
 	github.com/palantir/godel v2.16.0+incompatible // indirect
-	github.com/palantir/pkg v0.0.0-20190319222743-332184900c68 // indirect
+	github.com/palantir/pkg v0.0.0-20190810075909-3c3292ada62a // indirect
 	github.com/pierrec/lz4 v2.0.5+incompatible // indirect
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/spf13/cobra v0.0.3 // indirect
