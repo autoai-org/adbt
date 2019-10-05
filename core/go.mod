@@ -36,7 +36,7 @@ require (
 	go.mongodb.org/mongo-driver v1.0.0
 	golang.org/x/crypto v0.0.0-20190417181257-f416ebab96af // indirect
 	golang.org/x/net v0.0.0-20190415214537-1da14a5a36f2 // indirect
-	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 // indirect
+	golang.org/x/sync cd5d95a43a6e // indirect
 	gopkg.in/cheggaaa/pb.v1 v1.0.28 // indirect
 	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
 	gopkg.in/go-playground/validator.v9 v9.28.0 // indirect
