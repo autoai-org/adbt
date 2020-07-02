@@ -9495,10 +9495,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-chartist@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/vue-chartist/-/vue-chartist-2.2.0.tgz#08a05cb0bc1fc629befe3ca503a9af2d6def1ce7"
-  integrity sha512-LlTL4BvBqFe7yX0fD+PY12bblgVm7ZZHsVtWssmHXi6YVh/D2pfnV7Sm9+HFOVr3vqRvKpl6F048K2BWpGC4qw==
+vue-chartist@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/vue-chartist/-/vue-chartist-2.3.1.tgz#74394bec4d8383c5237803e54c2ef7e7f3faf484"
+  integrity sha512-DNM+eHBA/vebLChmPsWuNzOP0E38yDs6nvBq/VZPLsl+DjMUt9sDiQYAivOHDJ7ss5fCMMYyxRTXd6yZqSt5MQ==
   dependencies:
     chartist "^0.11.0"
 
