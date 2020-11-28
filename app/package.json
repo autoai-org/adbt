@@ -15,7 +15,7 @@
     "@vuetify/vuex-cognito-module": "^0.5.1",
     "axios": "0.18.0",
     "chartist": "0.11.0",
-    "core-js": "2.5.7",
+    "core-js": "2.6.12",
     "dayjs": "1.8.12",
     "open": "6.1.0",
     "vue": "2.6.10",
