@@ -6,7 +6,7 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/gin-contrib/sse v0.0.0-20190301062529-5545eab6dad3 // indirect
-	github.com/gin-gonic/gin v1.3.0
+	github.com/gin-gonic/gin v1.6.3
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
