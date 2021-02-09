@@ -11,10 +11,9 @@ require (
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/google/go-github v17.0.0+incompatible // indirect
-	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/google/uuid v1.1.1
 	github.com/kardianos/service v1.0.0
-	github.com/levigross/grequests v0.0.0-20190130132859-37c80f76a0da
+	github.com/levigross/grequests v0.0.0-20190908174114-253788527a1a
 	github.com/manifoldco/promptui v0.3.2
 	github.com/mattn/go-isatty v0.0.7 // indirect
 	github.com/mattn/go-runewidth v0.0.4 // indirect
