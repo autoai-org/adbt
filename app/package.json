@@ -12,7 +12,7 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "@vuetify/vuex-cognito-module": "^0.5.1",
+    "@vuetify/vuex-cognito-module": "0.5.4",
     "axios": "0.18.0",
     "chartist": "0.11.0",
     "core-js": "2.5.7",

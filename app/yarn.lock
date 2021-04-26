@@ -976,10 +976,10 @@
   resolved "https://registry.yarnpkg.com/@vue/web-component-wrapper/-/web-component-wrapper-1.2.0.tgz#bb0e46f1585a7e289b4ee6067dcc5a6ae62f1dd1"
   integrity sha512-Xn/+vdm9CjuC9p3Ae+lTClNutrVhsXpzxvoTXXtoys6kVRX9FkueSUAqSWAyZntmVLlR4DosBV4pH8y5Z/HbUw==
 
-"@vuetify/vuex-cognito-module@^0.5.1":
-  version "0.5.1"
-  resolved "http://registry.npm.taobao.org/@vuetify/vuex-cognito-module/download/@vuetify/vuex-cognito-module-0.5.1.tgz#fa83cf54f5b776f7a333f48b96b3ae8c0253b82e"
-  integrity sha1-+oPPVPW3dvejM/SLlrOujAJTuC4=
+"@vuetify/vuex-cognito-module@0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@vuetify/vuex-cognito-module/-/vuex-cognito-module-0.5.4.tgz#a3b37b046415f02b5649ca00c423399c0fa0adf7"
+  integrity sha512-qzL/txIrbqAVpyOlqzwKYGRXyoAuBPBQWVmhqK0Y+JAng7U8c7H5FXo7cJF/HDK4U1Qv5d+QRARPpxA5hV42Eg==
   dependencies:
     "@aws-amplify/auth" "^1.2.18"
     "@aws-amplify/core" "^1.0.23"
